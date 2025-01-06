@@ -1,0 +1,11 @@
+<FA> ::= <states> <alphabet> <transitions> <start_state> <final_states>
+<states> ::= "states:" <state_list>
+<state_list> ::= <state> | <state> "," <state_list>
+<alphabet> ::= "alphabet:" <symbol_list>
+<symbol_list> ::= <symbol> | <symbol> "," <symbol_list>
+<transitions> ::= <transition> | <transition> <transitions>
+<transition> ::= <state> "," <symbol> "->" <state>
+<start_state> ::= "start:" <state>
+<final_states> ::= "final:" <state_list>
+<state> ::= any valid string without spaces
+<symbol> ::= any single character
