@@ -1,0 +1,45 @@
+Start Symbol: <program>
+
+End Symbols (Terminal Symbols):
+"int", "bool", "if", "while", "cin", "cout", "else", "return", "0", "true", "false", 
+"+", "-", "*", "/", "%", "<", "<=", "==", "!=", ">=", ">", "(", ")", ";", ">>", "<<", 
+<identifier>, <intconst>, <boolconst>, <nr>, <digit>, <letter>, <char>, <string>
+
+Non-Terminals:
+<program>, <decllist>, <declaration>, <type>, <compoundstmt>, <stmtlist>, <stmt>, 
+<simplstmt>, <assignstmt>, <iostmt>, <expression>, <term>, <factor>, <condition>, <relation>, 
+<structstmt>, <ifstmt>, <whilestmt>, <identifier>, <letter_digit_sequence>, <letter>, <digit>, 
+<intconst>, <nr>, <string>, <char>, <boolconst>
+
+Productions:
+1. <program> -> "#include <iostream>" "using namespace std;" "int main()" "{" <decllist> ";" <compoundstmt> "return 0;" "}"
+2. <decllist> -> <declaration> | <declaration> <decllist>
+3. <declaration> -> <type> <identifier> ";"
+4. <type> -> "bool" | "int"
+5. <compoundstmt> -> "{" <stmtlist> "}"
+6. <stmtlist> -> <stmt> | <stmt> ";" <stmtlist>
+7. <stmt> -> <simplstmt> | <structstmt>
+8. <simplstmt> -> <assignstmt> | <iostmt>
+9. <assignstmt> -> <identifier> "=" <expression> ";"
+10. <iostmt> -> "cin" ">>" <identifier> ";" | "cout" "<<" <expression> ";"
+11. <expression> -> <expression> "+" <term> | <expression> "-" <term> | <term>
+12. <term> -> <term> "*" <factor> | <term> "/" <factor> | <term> "%" <factor> | <factor>
+13. <factor> -> "(" <expression> ")" | <identifier> | <intconst> | <boolconst> | <factor> "%" <factor>
+14. <condition> -> <expression> <relation> <expression> | <expression> "&&" <expression> | <expression> "||" <expression>
+15. <relation> -> "<" | "<=" | "==" | "!=" | ">=" | ">"
+16. <structstmt> -> <ifstmt> | <whilestmt> | <compoundstmt>
+17. <ifstmt> -> "if" "(" <condition> ")" <stmt> | "if" "(" <condition> ")" <stmt> "else" <stmt>
+18. <whilestmt> -> "while" "(" <condition> ")" <stmt>
+19. <identifier> -> <letter> | <letter> <letter_digit_sequence>
+20. <letter_digit_sequence> -> <letter> | <digit> | <letter_digit_sequence> <letter> | <letter_digit_sequence> <digit>
+21. <letter> -> "a" | "b" | ... | "z" | "î" | "ș" | "ț" | "â"
+22. <digit> -> "0" | "1" | ... | "9"
+23. <intconst> -> "+" <nr> | "-" <nr> | <nr>
+24. <nr> -> <digit> | <digit> <nr>
+25. <string> -> <char> | <char> <string>
+26. <char> -> <letter> | <digit>
+27. <boolconst> -> "true" | "false"
+
+Epsilon (End Symbol): 
+<decllist> -> ε
+<stmtlist> -> ε
